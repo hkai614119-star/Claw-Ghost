@@ -1,0 +1,10 @@
+{
+  "intent": "Monitor a liquidity pool position for abnormal TVL outflow and volatility shock. If liquidity drains too fast, exit the pool and protect residual exposure. If chain congestion becomes too high, delay execution unless liquidation risk is present. Do not expose the full strategy path unless execution is necessary.",
+  "onchain_snapshot": {
+    "protocol_state": "pool TVL declining rapidly",
+    "account_state": "position active with moderate exposure",
+    "liquidity_state": "deteriorating",
+    "slippage_state": "rising",
+    "volatility_state": "short-term volatility shock"
+  }
+}

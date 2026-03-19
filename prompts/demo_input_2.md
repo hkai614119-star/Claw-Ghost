@@ -1,0 +1,1 @@
+Monitor a liquidity pool position for abnormal TVL outflow and volatility shock. If liquidity drains too fast, exit the pool and protect residual exposure. If chain congestion becomes too high, delay execution unless liquidation risk is present.

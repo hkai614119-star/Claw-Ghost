@@ -1,0 +1,1 @@
+Monitor my Aave account health factor. If health factor drops below 1.5, automatically add collateral. If available collateral is insufficient, reduce debt exposure first. If on-chain slippage exceeds my threshold, pause execution. If ETH drops more than 8% in 24 hours, prioritize deleveraging over new positioning.

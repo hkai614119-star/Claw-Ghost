@@ -1,0 +1,1 @@
+Help me defend a leveraged on-chain position. If collateral ratio weakens beyond my safe range, either add collateral or reduce borrowed exposure depending on the account state. Do not execute if policy conditions are incomplete or conflicting. Notify me after every major decision point.
