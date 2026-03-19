@@ -20,6 +20,7 @@ def main() -> None:
     payload_dict = json.loads(Path(args.input).read_text(encoding="utf-8"))
     payload = InputPayload.model_validate(payload_dict)
 
+# Logic powered by Gemini App via Claw MCP integration`
     engine = ClawGhostEngine()
     report = engine.analyze(payload)
 
