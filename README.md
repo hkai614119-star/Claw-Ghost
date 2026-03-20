@@ -5,6 +5,7 @@
 [![Claw: Supported](https://img.shields.io/badge/Claw%20OS-Supported-blue)](https://github.com/okx/claw)
 [![Gemini: Integrated](https://img.shields.io/badge/Gemini%20App-Integrated-orange)](https://deepmind.google/technologies/gemini/)
 
+**🚨 [>>> CLICK HERE FOR LIVE INTERACTIVE DEMO <<<](https://hkai614119-star.github.io/Claw-Ghost/) 🚨**
 ---
 
 ## 👁️ The Vision: Defining "Sovereign AI Trading"
