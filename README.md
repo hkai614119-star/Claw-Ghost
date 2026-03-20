@@ -1,28 +1,42 @@
-# 🚀 Claw-Ghost: Demo Kit
+# 👻 Claw-Ghost (v2.0) - Sovereign Guardian
+> **The World's First Sovereign AI Guardian for Onchain Asset Management, Powered by OKX Onchain OS (Claw) & TEE.**
 
-> **A TEE-Ready, Intent-Based Privacy Execution Engine built on OKX Onchain OS (Claw).**
-> *"Solving the Trust & Privacy bottleneck for Autonomous Onchain Agents."*
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claw: Supported](https://img.shields.io/badge/Claw%20OS-Supported-blue)](https://github.com/okx/claw)
+[![Gemini: Integrated](https://img.shields.io/badge/Gemini%20App-Integrated-orange)](https://deepmind.google/technologies/gemini/)
 
-![Execution Report](assets/execution_report.png)
+---
 
-## 🛠️ The "Zero-Friction" Setup
+## 👁️ The Vision: Defining "Sovereign AI Trading"
 
-Reviewers, we value your time. This demo is designed to run locally within 60 seconds with zero complex dependencies.
+In the "Dark Forest" of Web3, AI Agents are either toy-like chat-bots or vulnerable scripts. **Claw-Ghost v2.0** defines a new paradigm: **Sovereign AI Trading**.
 
-**Prerequisites:**
-- Python: 3.10 or higher
-- Package Manager: `pip`
+We have built a self-custodial, privacy-preserving execution engine that doesn't just manage assets—**it owns its intent.**
 
-**Installation & Quick Start:**
+### We solve the *Final Trillion-Dollar Bottleneck*:
+1.  **Private Key Sovereignty:** Keys never leave the Intel SGX/TDX Protected Enclave.
+2.  **Strategy Privacy:** Intent parsing and policy execution are cloaked from node operators and MEV bots.
+3.  **Proactive Risk Immunization:** Millisecond-level reaction to chain-state changes without human intervention.
+4.  **Trust-Minimized Execution:** Proven via **Zero-Knowledge Proofs (zk-SNARKs)** that the agent executed *exactly* what the user intended.
 
-```bash
-# 1. Clone the repository
-git clone [https://github.com/hkai614119-star/Claw-Ghost.git](https://github.com/hkai614119-star/Claw-Ghost.git)
-cd Claw-Ghost
+---
 
-# 2. Install lightweight dependencies
-python -m pip install -r requirements.txt
-# (Windows users: Use 'py' instead of 'python' if environment variables are not set)
+## 🛠️ Architecture: The Ghost Protocol Stack
 
-# 3. Run the core execution pipeline
-python -m src.demo --input examples/intent_snapshot_1.json
+Claw-Ghost is not an app; it's a **Risk Management Primitive** deeply integrated into the Onchain OS microkernel.
+
+```mermaid
+graph TD
+    User[👤 User Intent\n"Keep Aave health > 1.5"] -->|Natural Language| LLM[🧠 Gemini App\n(via MCP)]
+    
+    subgraph "Intel SGX / TDX Enclave (Claw-Ghost-TEE)"
+        LLM -->|Intent Parsing| Parser[📜 Intent-to-Policy\nCompiler]
+        Parser -->|Policy Tree| Strategy[⚙️ Strategy Module\n(Self-Evolving)]
+        Strategy -->|Secure Signing| Wallet[🔐 Wallet Manager\n(Private Keys Locked)]
+    end
+    
+    subgraph "OKX Onchain OS (Claw Kernel)"
+        Wallet -->|Atomic Tx| Connector[🔌 Connector Pool\n(Aave, Uniswap, Curve)]
+        Connector -->|Raw Event Stream| Monitor[👁️ Market Monitor\n(Strategy Trigger)]
+        Monitor -->|m/s Loop| Strategy
+    end
