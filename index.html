@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claw-Ghost 2.0 | Sovereign AI Guardian</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Fira Code', monospace; background-color: #030712; color: #f3f4f6; }
+        .glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+        .scanning { background: linear-gradient(transparent 50%, rgba(59, 130, 246, 0.1) 50%); background-size: 100% 4px; animation: scan 2s linear infinite; }
+        @keyframes scan { from { background-position: 0 0; } to { background-position: 0 100%; } }
+        .pulse-border { animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-border { 0%, 100% { border-color: rgba(59, 130, 246, 0.3); } 50% { border-color: rgba(59, 130, 246, 1); } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function App() {
+            const [intent, setIntent] = useState("Keep my Aave health factor above 1.5. If lower, repay 1000 USDC using ETH.");
+            const [status, setStatus] = useState("IDLE");
+            const [logs, setLogs] = useState(["[SYSTEM] Sovereign Guardian initialized.", "[SYSTEM] Waiting for user intent..."]);
+            const [healthFactor, setHealthFactor] = useState(1.85);
+            const [showTree, setShowTree] = useState(false);
+            const logEndRef = useRef(null);
+
+            // 自动滚动日志
+            useEffect(() => { logEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [logs]);
+
+            // 模拟链上数据波动
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setHealthFactor(prev => {
+                        const next = prev - (Math.random() * 0.05 - 0.02);
+                        return parseFloat(next.toFixed(2));
+                    });
+                }, 2000);
+                return () => clearInterval(interval);
+            }, []);
+
+            const addLog = (msg) => {
+                setLogs(prev => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
+            };
+
+            const runSimulation = async () => {
+                setStatus("COMPILING");
+                addLog("🧠 GeminiINC: Analyzing natural language intent...");
+                await new Promise(r => setTimeout(r, 1500));
+                
+                setShowTree(true);
+                addLog("📜 Policy Tree generated. Logic mapped to Claw Strategy Module.");
+                await new Promise(r => setTimeout(r, 1000));
+
+                setStatus("ARMED");
+                addLog("🛡️ TEE Enclave Secured. Keys isolated in hardware.");
+                addLog("👁️ Monitor Active: Watching Aave::HealthFactor < 1.5");
+                
+                // 模拟触发执行
+                await new Promise(r => setTimeout(r, 2000));
+                setStatus("EXECUTING");
+                addLog("⚡ TRIGGERED: Health Factor detected at " + healthFactor);
+                addLog("🔐 TEE: Signing Transaction via Claw Wallet Manager...");
+                addLog("🔌 Connector: Executing Swap ETH -> USDC via Uniswap V3...");
+                
+                await new Promise(r => setTimeout(r, 2000));
+                addLog("🧩 ZKP: Generating Proof of Strategic Integrity...");
+                addLog("💯 SUCCESS: Proof verified on-chain. Health restored.");
+                setStatus("IDLE");
+            };
+
+            return (
+                <div className="min-h-screen p-4 md:p-8 scanning">
+                    {/* Header */}
+                    <header className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-10 border-b border-blue-900/50 pb-6">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20">👻</div>
+                            <div>
+                                <h1 className="text-2xl font-bold tracking-widest text-white">CLAW-GHOST <span className="text-blue-500">2.0</span></h1>
+                                <p className="text-xs text-blue-400/70 tracking-tighter uppercase font-medium">Sovereign Intent Execution Engine</p>
+                            </div>
+                        </div>
+                        <div className="mt-4 md:mt-0 flex gap-6 text-sm font-medium">
+                            <div className="flex items-center gap-2">
+                                <div className={`w-2 h-2 rounded-full ${status === 'IDLE' ? 'bg-green-500' : 'bg-yellow-500 animate-ping'}`}></div>
+                                <span className="text-gray-400">STATUS: {status}</span>
+                            </div>
+                            <div className="text-blue-400">Uptime: 99.99%</div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        
+                        {/* Control Panel */}
+                        <section className="lg:col-span-4 space-y-6">
+                            <div className="bg-gray-900/80 border border-blue-900/30 p-6 rounded-xl backdrop-blur-md pulse-border border-2">
+                                <h2 className="text-blue-400 text-sm font-bold mb-4 flex items-center gap-2">
+                                    <span>COMMANDER_INTENT</span>
+                                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                </h2>
+                                <textarea 
+                                    className="w-full h-40 bg-black/50 border border-blue-900/20 rounded p-4 text-sm text-blue-100 focus:outline-none focus:border-blue-500 transition-all"
+                                    value={intent}
+                                    onChange={(e) => setIntent(e.target.value)}
+                                />
+                                <button 
+                                    onClick={runSimulation}
+                                    disabled={status !== 'IDLE'}
+                                    className={`w-full mt-4 py-3 rounded font-bold uppercase tracking-widest transition-all ${status === 'IDLE' ? 'bg-blue-600 hover:bg-blue-500 glow' : 'bg-gray-800 text-gray-500 cursor-not-allowed'}`}
+                                >
+                                    {status === 'IDLE' ? 'INITIALIZE_GHOST' : 'PROCESSING...'}
+                                </button>
+                            </div>
+
+                            <div className="bg-gray-900/50 border border-gray-800 p-6 rounded-xl">
+                                <h2 className="text-gray-400 text-xs font-bold mb-4 uppercase">Claw OS Core Status</h2>
+                                <div className="space-y-3">
+                                    {['Monitor', 'Strategy', 'Wallet', 'ZKP_Prover'].map(m => (
+                                        <div key={m} className="flex justify-between items-center text-xs">
+                                            <span className="text-gray-500">{m}</span>
+                                            <span className={status !== 'IDLE' ? 'text-blue-400' : 'text-gray-700'}>{status !== 'IDLE' ? '● ONLINE' : '○ STANDBY'}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Visual Logic / Tree Area */}
+                        <section className="lg:col-span-8 bg-black/40 border border-blue-900/20 rounded-xl p-6 relative overflow-hidden flex flex-col min-h-[500px]">
+                            <h2 className="text-blue-400 text-sm font-bold mb-6 flex items-center gap-2">
+                                📜 STRATEGY_TREE_VISUALIZER
+                            </h2>
+                            
+                            {showTree ? (
+                                <div className="flex-1 flex flex-col items-center justify-center animate-fadeIn">
+                                    <div className="flex flex-col items-center">
+                                        <div className="p-3 border border-blue-500 rounded bg-blue-950/30 text-xs">ROOT: INTENT_HF_PROTECT</div>
+                                        <div className="h-8 w-px bg-blue-500"></div>
+                                        <div className="flex gap-12">
+                                            <div className="flex flex-col items-center">
+                                                <div className="h-px w-20 bg-blue-500 relative -right-10"></div>
+                                                <div className="p-3 border border-gray-600 rounded bg-gray-900 text-[10px] mt-2 text-center">
+                                                    MONITOR<br/>HealthFactor &lt; 1.5
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col items-center">
+                                                <div className="h-px w-20 bg-blue-500 relative -left-10"></div>
+                                                <div className="p-3 border border-gray-600 rounded bg-gray-900 text-[10px] mt-2 text-center">
+                                                    ACTION<br/>Flash_Swap_Repay
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-20 text-blue-500/30 text-[10px] uppercase tracking-[0.5em] animate-pulse">
+                                        Logic Mapping Verified via GeminiINC
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex-1 flex items-center justify-center text-gray-700 text-sm italic">
+                                    [Waiting for Strategy Compilation]
+                                </div>
+                            )}
+
+                            {/* Dashboard Stats */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-auto pt-6 border-t border-blue-900/20">
+                                <div className="p-4 bg-gray-900/40 rounded">
+                                    <div className="text-[10px] text-gray-500 uppercase">Aave Health Factor</div>
+                                    <div className={`text-xl font-bold ${healthFactor < 1.5 ? 'text-red-500' : 'text-blue-400'}`}>{healthFactor}</div>
+                                </div>
+                                <div className="p-4 bg-gray-900/40 rounded">
+                                    <div className="text-[10px] text-gray-500 uppercase">Enclave Security</div>
+                                    <div className="text-xl font-bold text-green-500">TEE_ACTIVE</div>
+                                </div>
+                                <div className="p-4 bg-gray-900/40 rounded">
+                                    <div className="text-[10px] text-gray-500 uppercase">Execution Privacy</div>
+                                    <div className="text-xl font-bold text-purple-500">ZKP_SHIELD</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Terminal Logs */}
+                        <section className="lg:col-span-12">
+                            <div className="bg-black border border-gray-800 rounded-lg p-4 font-mono text-xs leading-relaxed h-48 overflow-y-auto shadow-inner">
+                                <div className="flex items-center gap-2 mb-2 text-gray-600 border-b border-gray-900 pb-2">
+                                    <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                                    <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span className="ml-2">GHOST_EXECUTOR_TERMINAL</span>
+                                </div>
+                                {logs.map((log, i) => (
+                                    <div key={i} className="mb-1">
+                                        <span className="text-blue-900 mr-2">>>></span>
+                                        <span className={log.includes('SUCCESS') ? 'text-green-400 font-bold' : log.includes('⚡') ? 'text-yellow-400' : 'text-gray-400'}>{log}</span>
+                                    </div>
+                                ))}
+                                <div ref={logEndRef} />
+                            </div>
+                        </section>
+                    </main>
+
+                    <footer className="max-w-7xl mx-auto mt-10 text-center text-gray-600 text-[10px] tracking-widest uppercase">
+                        Built for OKX Onchain OS Hackathon | Lobster Sovereign Labs | System Time: 2026.03.20
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
