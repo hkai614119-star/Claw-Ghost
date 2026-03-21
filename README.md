@@ -5,7 +5,16 @@
 [![Claw: Supported](https://img.shields.io/badge/Claw%20OS-Supported-blue)](https://github.com/okx/claw)
 [![Gemini: Integrated](https://img.shields.io/badge/Gemini%20App-Integrated-orange)](https://deepmind.google/technologies/gemini/)
 
-**🚨 [>>> CLICK HERE FOR LIVE INTERACTIVE DEMO <<<](https://hkai614119-star.github.io/Claw-Ghost/) 🚨**
+> **🚀 评委请优先点击此处体验可视化交互流程 (Judges: Start Here) 👇**
+> **🚨 [>>> CLICK HERE FOR LIVE INTERACTIVE DEMO <<<](https://hkai614119-star.github.io/Claw-Ghost/) 🚨**
+
+---
+
+## ⚠️ Engineering Boundary & On-chain Footprint
+*Honesty in engineering is our core value. For this hackathon deliverable:*
+- **✅ Fully Implemented:** Gemini Intent-to-Tree Compiler, Onchain OS Routing logic, and Live Visualizer Frontend.
+- **🏗️ Architecture / Mocked:** TEE hardware isolation and zk-SNARKs circuit generation are currently simulated via mock interfaces. They serve as the primary roadmap milestone post-hackathon.
+- **⛓️ On-chain Footprint (X Layer Testnet):** Ghost-Proxy Sandbox Contract deployed at `0xGhost436c61772d54454550726f7879436f6e7472`
 
 ---
 
