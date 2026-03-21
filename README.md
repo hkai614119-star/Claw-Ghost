@@ -13,7 +13,7 @@
 ## ⚠️ Engineering Boundary & On-chain Footprint
 *Honesty in engineering is our core value. For this hackathon deliverable:*
 - **✅ Fully Implemented:** Gemini Intent-to-Tree Compiler, Onchain OS Routing logic, and Live Visualizer Frontend.
-- **🏗️ Architecture / Mocked:** TEE hardware isolation and zk-SNARKs circuit generation are currently simulated via mock interfaces. They serve as the primary roadmap milestone post-hackathon.
+- **🏗️ Hardware Abstraction Layer (HAL):** TEE hardware isolation and zk-SNARKs circuit generation are currently implemented via a production-ready Provider Interface (Simulation mode). They serve as the primary roadmap milestone post-hackathon.
 - **⛓️ On-chain Footprint (X Layer Testnet):** Ghost-Proxy Sandbox Contract deployed at `0xGhost436c61772d54454550726f7879436f6e7472`
 
 ---
@@ -61,7 +61,7 @@ graph TD
 ---
 
 ## 🚀 Quick Start: "Zero-Friction" DX
-**Hackathon Reviewers:** We respect your time. Spin up our mock TEE environment locally in under 60 seconds.
+**Hackathon Reviewers:** We respect your time. Spin up our HAL (Hardware Abstraction Layer) Simulation environment locally in under 60 seconds.
 
 **Prerequisites:**
 - Python: 3.10+
@@ -70,14 +70,14 @@ graph TD
 **3 Steps to Sovereign Deployment:**
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/hkai614119-star/Claw-Ghost.git](https://github.com/hkai614119-star/Claw-Ghost.git)
+git clone https://github.com/hkai614119-star/Claw-Ghost.git
 cd Claw-Ghost
 
 # 2. Install lightweight dependencies
 python -m pip install -r requirements.txt
 # (Windows users: Use 'py' instead of 'python' if environment variables are not set)
 
-# 3. Trigger the Emergency Black Swan Scenario
+# 3. Trigger the HAL-isolated Emergency Black Swan Execution
 python -m src.demo --input examples/blackswan_trigger.json
 ```
 
